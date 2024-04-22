@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri "https://github.com/ggok01/victory/blob/main/Encryption.ps1" -OutFile "$env:USERPROFILE\Downloads\socenc.ps1"
