@@ -60,5 +60,5 @@ public class Wallpaper {
 "@
 
 # Yeni wallpaper yolu
-$newWallpaperPath = "\\hostname:port\hack.png"
+$newWallpaperPath = "C:\Users\Calculus\Downloads\gogo.png"
 [Wallpaper]::SystemParametersInfo(0x0014, 0, $newWallpaperPath, 0x01 -bor 0x02)
