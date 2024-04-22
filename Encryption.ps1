@@ -60,7 +60,7 @@ public class Wallpaper {
 "@
 
 # Yeni wallpaper yolu
-$newWallpaperPath = "C:\Users\Calculus\Downloads\gogo.png"
+$newWallpaperPath = "C:\Users\Calculus\Downloads\gogo.webp"
 
 # Yeni boyutları belirleme
 $newWidth = 500  # Yeni genişlik (piksel cinsinden)
