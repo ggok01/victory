@@ -17,8 +17,8 @@ $aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
 $IV = $aesManaged.IV
 
 # encryption-key and IV speichern auf Webservern
-$keyFile = "\\mbgogo:8080\sensible\encryptionKey.bin"
-$ivFile = "\\mbgogo:8080\sensible\encryptionIV.bin"
+$keyFile = "C:\Users\Calculus\Downloads\encryptionKey.bin"
+$ivFile = "C:\Users\Calculus\Downloads\\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($keyFile, $aesManaged.Key)
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
