@@ -67,7 +67,7 @@ $newWidth = 500  # Yeni genişlik (piksel cinsinden)
 $newHeight = 500  # Yeni yükseklik (piksel cinsinden)
 
 # Wallpaper'ı yeniden boyutlandırma
-$img = [System.Drawing.Image]::FromFile("C:\Users\Calculus\Downloads\gogo.png")
+$img = [System.Drawing.Image]::FromFile("C:\Users\Calculus\Downloads\gogo.webp")
 $resizedImg = $img.GetThumbnailImage($newWidth, $newHeight, $null, [System.IntPtr]::Zero)
 
 # Yeniden boyutlandırılmış wallpaper'ı kaydetme
