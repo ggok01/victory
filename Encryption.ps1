@@ -1,7 +1,7 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
 $username=$env:USERNAME
 $folder=foo
-$folderPath = "C:\Users\$username\Desktop\$folder"
+$folderPath = "C:\Users\Calculus\Desktop\foo"
 $hostname=localhost
 $port=8080
 $encryptionKey = New-Object Byte[] 32  
