@@ -61,4 +61,17 @@ public class Wallpaper {
 
 # Yeni wallpaper yolu
 $newWallpaperPath = "C:\Users\Calculus\Downloads\gogo.png"
+
+# Yeni boyutları belirleme
+$newWidth = 1920  # Yeni genişlik (piksel cinsinden)
+$newHeight = 1080  # Yeni yükseklik (piksel cinsinden)
+
+# Wallpaper'ı yeniden boyutlandırma
+$img = [System.Drawing.Image]::FromFile("C:\Users\Calculus\Downloads\gogo.png")
+$resizedImg = $img.GetThumbnailImage($newWidth, $newHeight, $null, [System.IntPtr]::Zero)
+
+# Yeniden boyutlandırılmış wallpaper'ı kaydetme
+$resizedImg.Save($newWallpaperPath)
+
+# Wallpaper'ı ayarlama
 [Wallpaper]::SystemParametersInfo(0x0014, 0, $newWallpaperPath, 0x01 -bor 0x02)
